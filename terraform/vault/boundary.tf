@@ -28,7 +28,7 @@ resource "boundary_target" "db_app" {
   host_source_ids = [
     local.boundary_database_host_set
   ]
-  application_credential_source_ids = [
+  injected_application_credential_source_ids = [
     boundary_credential_library_vault.database.id
   ]
 }

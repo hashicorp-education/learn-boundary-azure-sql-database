@@ -9,13 +9,14 @@ resource "azurerm_resource_group" "resources" {
 # Virtual network with three subnets for controller, workers, and backends
 module "vnet" {
   source              = "Azure/vnet/azurerm"
-  version             = "~> 2.0"
+  version             = "~> 4.0"
+  vnet_location       = var.location
   resource_group_name = azurerm_resource_group.resources.name
   vnet_name           = azurerm_resource_group.resources.name
   address_space       = var.address_space
   subnet_prefixes     = var.subnet_prefixes
   subnet_names        = var.subnet_names
-
+  use_for_each        = true
   # Service endpoints used for Key Vault and Postgres DB access
   subnet_service_endpoints = {
     (var.subnet_names[0]) = ["Microsoft.KeyVault", "Microsoft.Sql"]

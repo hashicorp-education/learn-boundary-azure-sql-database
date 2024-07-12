@@ -22,10 +22,10 @@ resource "boundary_role" "org_anon_listing" {
 }
 
 resource "boundary_role" "org_readonly" {
-  name           = "readonly"
-  description    = "Read-only role"
-  scope_id       = boundary_scope.global.id
-  grant_scope_id = boundary_scope.org.id
+  name            = "readonly"
+  description     = "Read-only role"
+  scope_id        = boundary_scope.global.id
+  grant_scope_ids = [boundary_scope.org.id]
   grant_strings = [
     "id=*;type=*;actions=read"
   ]
@@ -36,10 +36,10 @@ resource "boundary_role" "org_readonly" {
 }
 
 resource "boundary_role" "db_admin" {
-  name           = "${boundary_scope.db_infra.id}-admin"
-  description    = "Administrator role for ${boundary_scope.db_infra.id}"
-  scope_id       = boundary_scope.org.id
-  grant_scope_id = boundary_scope.db_infra.id
+  name            = "${boundary_scope.db_infra.id}-admin"
+  description     = "Administrator role for ${boundary_scope.db_infra.id}"
+  scope_id        = boundary_scope.org.id
+  grant_scope_ids = [boundary_scope.db_infra.id]
   grant_strings = [
     "id=*;type=*;actions=*"
   ]
@@ -50,10 +50,10 @@ resource "boundary_role" "db_admin" {
 
 # Adds an org-level role granting administrative permissions within the application project
 resource "boundary_role" "application" {
-  name           = "${boundary_scope.application.id}-admin"
-  description    = "Administrator role for ${boundary_scope.application.id}"
-  scope_id       = boundary_scope.org.id
-  grant_scope_id = boundary_scope.application.id
+  name            = "${boundary_scope.application.id}-admin"
+  description     = "Administrator role for ${boundary_scope.application.id}"
+  scope_id        = boundary_scope.org.id
+  grant_scope_ids = [boundary_scope.application.id]
   grant_strings = [
     "id=*;type=*;actions=*"
   ]

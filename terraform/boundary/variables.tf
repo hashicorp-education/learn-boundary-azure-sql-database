@@ -24,7 +24,7 @@ locals {
   recovery_service_principal_client_id     = data.terraform_remote_state.infrastructure.outputs.boundary_recovery_service_principal_client_id
   recovery_service_principal_client_secret = data.terraform_remote_state.infrastructure.outputs.boundary_recovery_service_principal_client_secret
 
-  azuread_group_dev      = data.terraform_remote_state.infrastructure.outputs.azuread_group_developer
-  azuread_group_db       = data.terraform_remote_state.infrastructure.outputs.azuread_group_database
-  database_url           = data.terraform_remote_state.infrastructure.outputs.mssql_ip_address
+  azuread_group_dev = data.terraform_remote_state.infrastructure.outputs.azuread_group_developer
+  azuread_group_db  = data.terraform_remote_state.infrastructure.outputs.azuread_group_database
+  database_url      = data.terraform_remote_state.infrastructure.outputs.mssql_ip_address
 }
